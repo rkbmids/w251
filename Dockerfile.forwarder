@@ -1,0 +1,12 @@
+FROM alpine:3.7
+
+RUN apk update && apk add python-pip 
+
+RUN apk add mosquitto-clients
+
+RUN pip install paho-mqtt
+
+WORKDIR /
+COPY forward.py
+
+CMD python forward.py
