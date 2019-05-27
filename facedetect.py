@@ -3,7 +3,7 @@ import cv2
 
 import paho.mqtt.client as mqtt
 
-HOST="mosquitto"
+HOST="broker"
 PORT=1883
 TOPIC="facedetect"
 
@@ -12,7 +12,7 @@ def on_connect(clnt, user, flags, rc):
 
 client = mqtt.Client()
 client.on_connect = on_connect
-client.connect(HOST, PORT, 60)
+client.connect(HOST, PORT)
 
 cascade = cv2.CascadeClassifier('/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml')
 

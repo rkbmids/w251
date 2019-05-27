@@ -8,7 +8,9 @@ RUN apt install -y python-opencv python-pip vim-tiny mosquitto-clients libopencv
 
 RUN pip install paho-mqtt
 
+EXPOSE 1883
+
 WORKDIR /
-COPY facedetect.py
+COPY facedetect.py .
 
 CMD python facedetect.py
