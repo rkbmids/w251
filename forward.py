@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
 
-HOST = "mosquitto"
+HOST = "broker"
 PORT = 1883
 TOPIC = "facedetect"
 
