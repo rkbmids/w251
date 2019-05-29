@@ -20,7 +20,7 @@ def on_message(client, userdata, msg):
 
 local_client = mqtt.Client()
 local_client.on_connect = on_connect_local
-local_client.conect(HOST, PORT, 60)
+local_client.connect(HOST, PORT, 60)
 local_client.on_message = on_message
 
 remote_client = mqtt.Client()

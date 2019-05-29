@@ -11,6 +11,6 @@ RUN pip install paho-mqtt
 EXPOSE 1883
 
 WORKDIR /
-COPY facedetect.py .
+COPY faces.py .
 
-CMD python facedetect.py
+CMD python faces.py

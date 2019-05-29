@@ -19,11 +19,11 @@ cascade = cv2.CascadeClassifier('/usr/share/opencv/haarcascades/haarcascade_fron
 capture = cv2.VideoCapture(1)
 
 while(True):
-    ret, frame = cap.read()
+    ret, frame = capture.read()
 
-    grayframe = cv3.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    grayframe = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     
-    faces = cascade.detectMultiScale(gray, 1.3, 5)
+    faces = cascade.detectMultiScale(grayframe, 1.3, 5)
 
     for (x,y,w,h) in faces:
         face = frame[y:y+h, x:x+w]
@@ -33,6 +33,6 @@ while(True):
         rc,jpg = cv2.imencode('.png', face)
 
         msg = jpg.tobytes()
-        mqttclient.publish(topic, payload=msg, qos=0, retain=False)
+        client.publish(TOPIC, payload=msg, qos=0, retain=False)
         print("Published Message!")
 
