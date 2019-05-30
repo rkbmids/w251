@@ -10,7 +10,7 @@ HOST="cloudbroker"
 PORT=1883
 TOPIC="facedetect"
 
-path = 'data/' #map directory to  /mnt/hw3bucket
+path = '/data/' #map directory to  /mnt/hw3bucket
 
 def on_connect(clnt, user, flags, rc):
     print("connected with rc:" + str(rc))

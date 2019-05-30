@@ -11,5 +11,4 @@ EXPOSE 1883
 WORKDIR /
 COPY forward.py .
 
-CMD mosquitto -d
 CMD python forward.py
