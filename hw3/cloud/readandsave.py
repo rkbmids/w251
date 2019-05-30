@@ -3,15 +3,14 @@ import math
 import cv2
 
 import paho.mqtt.client as mqtt
-
+print('imports done!')
 index = 0
 
 HOST="cloudbroker"
 PORT=1883
-TOPIC="cloudfaces"
+TOPIC="facedetect"
 
-path = '/data/' #folder inside docker container that maps to folder on host that
-    #is mapped to cloud storage
+path = 'data/' #map directory to  /mnt/hw3bucket
 
 def on_connect(clnt, user, flags, rc):
     print("connected with rc:" + str(rc))
@@ -27,7 +26,12 @@ def on_message():
     cv2.imwrite(path+name, img)
 
 client = mqtt.Client()
+print('initialized client!')
 client.on_connect = on_connect
 client.connect(HOST, PORT)
+print('connected to host!')
+client.subscribe(TOPIC, 1)
+print('subscribed to topic!')
 client.on_message=on_message
 client.loop_forever()
+
