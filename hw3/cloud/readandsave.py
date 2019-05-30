@@ -10,7 +10,7 @@ HOST="cloudbroker"
 PORT=1883
 TOPIC="cloudfaces"
 
-path = 'data/' #folder inside docker container that maps to folder on host that
+path = '/data/' #folder inside docker container that maps to folder on host that
     #is mapped to cloud storage
 
 def on_connect(clnt, user, flags, rc):
