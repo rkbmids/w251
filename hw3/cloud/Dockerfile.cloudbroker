@@ -2,6 +2,6 @@ FROM alpine:3.7
 
 RUN apk update && apk add mosquitto
 
-CMD /usr/sbin/mosquitto
-
 EXPOSE 1883
+
+CMD /usr/sbin/mosquitto
