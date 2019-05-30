@@ -6,6 +6,6 @@ docker build -t cloudbroker -f Dockerfile.cloudbroker .
 
 docker build -t readandsave -f Dockerfile.readandsave .
 
-docker run -d --name cloudbroker --network cloudbridge cloudbroker
+docker run -d --name cloudbroker --privileged --network cloudbridge cloudbroker
 
-docker run -d --name readandsave --network cloudbridge readandsave
+docker run -d --name readandsave --privileged --network cloudbridge readandsave
