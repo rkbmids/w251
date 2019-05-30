@@ -17,15 +17,16 @@ def on_connect_remote(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
     print('recieived message!', msg)
-    client.publish(REMOTE_TOPIC, payload=msg.payload, qos=0, retain=False)
+    global remote_client
+    remote_client.publish(REMOTE_TOPIC, payload=msg.payload, qos=0, retain=False)
 
 local_client = mqtt.Client()
 local_client.on_connect = on_connect_local
 local_client.connect(HOST, PORT, 60)
 local_client.on_message = on_message
 
-#remote_client = mqtt.Client()
-#remote_client.on_connect = on_connect_remote
-#remote_client.connect(REMOTE_HOST, REMOTE_PORT, 60)
+remote_client = mqtt.Client()
+remote_client.on_connect = on_connect_remote
+remote_client.connect(REMOTE_HOST, REMOTE_PORT, 60)
 
 local_client.loop_forever()
