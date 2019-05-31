@@ -4,8 +4,4 @@ RUN apk update && apk add mosquitto
 
 EXPOSE 1883
 
-CMD echo 'connection bridge-0l\n'>>/etc/mosquitto
-CMD echo 'address 184.173.137.149:1883\n'>>/etc/mosquitto
-CMD echo 'topic # out 0\n'>>/etc/mosquitto
-CMD echo 'topic # in 0\n'>>/etc/mosquitto
 CMD /usr/sbin/mosquitto
