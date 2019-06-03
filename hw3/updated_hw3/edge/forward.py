@@ -19,6 +19,7 @@ def on_message(client, userdata, msg):
     print('recieived message!', msg)
     global remote_client
     remote_client.publish(REMOTE_TOPIC, payload=msg.payload, qos=0, retain=False)
+    print('published remotely')
 
 local_client = mqtt.Client()
 local_client.on_connect = on_connect_local
