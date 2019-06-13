@@ -6,16 +6,19 @@ import paho.mqtt.client as mqtt
 print('imports done!')
 index = 0
 
-HOST="cloudbroker"
+HOST="108.168.189.85"
 PORT=1883
-TOPIC="facedetect"
+TOPIC="cloudfaces"
 
 path = '/data/' #map directory to  /mnt/hw3bucket
 
 def on_connect(clnt, user, flags, rc):
+    client.subscribe(TOPIC)
+    print('subscribed to topic!')
     print("connected with rc:" + str(rc))
 
-def on_message():
+def on_message(client, userdata, msg):
+    print('message function triggered!! hallelujah')
     global index
     global path
     f = np.frombuffer(msg.payload, dtype='uint8')
@@ -28,10 +31,8 @@ def on_message():
 client = mqtt.Client()
 print('initialized client!')
 client.on_connect = on_connect
-client.connect(HOST, PORT)
+client.connect(HOST, PORT, 60)
 print('connected to host!')
-client.subscribe(TOPIC, 1)
-print('subscribed to topic!')
 client.on_message=on_message
+print('message function set!')
 client.loop_forever()
-
