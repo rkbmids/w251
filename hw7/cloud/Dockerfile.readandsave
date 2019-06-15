@@ -1,0 +1,16 @@
+FROM ubuntu
+
+RUN apt update
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt install -y python-opencv python-pip vim-tiny mosquitto-clients libopencv-dev
+
+RUN pip install paho-mqtt
+
+EXPOSE 1883
+
+WORKDIR /
+COPY readandsave.py .
+
+CMD python readandsave.py
