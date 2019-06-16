@@ -1,4 +1,10 @@
-FROM ubuntu
+FROM w251/keras:dev-tx2-4.2_b158-py3
+
+RUN git clone --recursive https://github.com/NVIDIA-Jetson/tf_trt_models.git
+
+WORKDIR tf_trt_models
+
+RUN ./install.sh python3
 
 RUN apt update
 
