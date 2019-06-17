@@ -12,4 +12,5 @@ docker run -d --name broker -p 1883:1883 --network jetsonbridge broker
 
 docker run -d --name forwarder --network jetsonbridge forwarder
 
-docker run -d --name facedetect -v /model_download:/model_download --privileged --network jetsonbridge facedetect
+docker run -d --name facedetect -v /home/rachael/w251/hw7/edge/:/model_download --privileged --network jetsonbridge facedetect
+

@@ -1,22 +1,19 @@
-FROM w251/keras:dev-tx2-4.2_b158-py3
-
-RUN git clone --recursive https://github.com/NVIDIA-Jetson/tf_trt_models.git
-
-WORKDIR tf_trt_models
-
-RUN ./install.sh python3
+FROM w251/tensorrtlab05:dev-tx2-4.2_b158
 
 RUN apt update
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt install -y python-opencv python-pip vim-tiny mosquitto-clients libopencv-dev
+RUN apt install -y python-pip vim-tiny mosquitto-clients python3-opencv
 
-RUN pip install paho-mqtt
+RUN pip3 install --upgrade pip
+
+RUN pip3 install paho-mqtt
+
 
 EXPOSE 1883
 
 WORKDIR /
 COPY faces.py .
 
-CMD python faces.py
+CMD python3 faces.py

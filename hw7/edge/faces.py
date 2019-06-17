@@ -1,12 +1,11 @@
 import numpy as np
-import cv2
-import tensorflow.contrib.tensorrt as trt
 import tensorflow as tf
 import numpy as np
 import time
-from tf_trt_models.detection import download_detection_model, build_detection_graph
+#from tf_trt_models.detection import download_detection_model, build_detection_graph
 import paho.mqtt.client as mqtt
-
+import cv2
+import os
 HOST="broker"
 PORT=1883
 TOPIC="facedetect"
@@ -38,14 +37,14 @@ frozen_graph = tf.GraphDef()
 with open(os.path.join(output_dir, FROZEN_GRAPH_NAME), 'rb') as f:
   frozen_graph.ParseFromString(f.read())
 
-trt_graph = trt.create_inference_graph(
-    input_graph_def=frozen_graph,
-    outputs=output_names,
-    max_batch_size=1,
-    max_workspace_size_bytes=1 << 25,
-    precision_mode='FP16',
-    minimum_segment_size=50
-)
+#trt_graph = trt.create_inference_graph(
+   # input_graph_def=frozen_graph,
+   # outputs=output_names,
+   # max_batch_size=1,
+   # max_workspace_size_bytes=1 << 25,
+  #  precision_mode='FP16',
+ #   minimum_segment_size=50
+#)
 
 
 tf_config = tf.ConfigProto()
@@ -66,7 +65,7 @@ while(True):
     scores, boxes, classes, num_detections = tf_sess.run(
         [tf_scores, tf_boxes, tf_classes, tf_num_detections],
         feed_dict={
-            tf_input: image_resized[None, ...]
+            tf_input: image_resized
         })
     boxes = boxes[0] # index by 0 to remove batch dimension
     scores = scores[0]
