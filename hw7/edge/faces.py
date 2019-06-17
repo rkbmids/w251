@@ -30,7 +30,6 @@ client.connect(HOST, PORT)
 
 #cascade = cv2.CascadeClassifier('/usr/share/opencv/haarcascades/haarcascade_frontalface_default.xml')
 
-capture = cv2.VideoCapture(1)
 
 output_dir=''
 frozen_graph = tf.GraphDef()
@@ -57,10 +56,13 @@ tf_boxes = tf_sess.graph.get_tensor_by_name('detection_boxes:0')
 tf_classes = tf_sess.graph.get_tensor_by_name('detection_classes:0')
 tf_num_detections = tf_sess.graph.get_tensor_by_name('num_detections:0')
 
+capture = cv2.VideoCapture(1)
 while(True):
     ret, frame = capture.read()
-    frame = frame.resize(300,300)
-    image_resized = np.array(frame)
+    rc,jpg = cv2.imencode('.jpg', frame)
+    cv2.imwrite('temp.jpg', jpg)
+    image = Image.open('temp.jpg')
+    image_resized = np.array(image.resize((300, 300)))
 
     scores, boxes, classes, num_detections = tf_sess.run(
         [tf_scores, tf_boxes, tf_classes, tf_num_detections],
