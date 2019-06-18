@@ -50,15 +50,15 @@ tf_num_detections = tf_sess.graph.get_tensor_by_name('num_detections:0')
 capture = cv2.VideoCapture(1)
 while(True):
     ret, frame = capture.read()
-    rc,jpg = cv2.imencode('.jpg', frame)
-    cv2.imwrite('temp.jpg', jpg)
-    image = Image.open('temp.jpg')
-    image_resized = np.array(image.resize((300, 300)))
-
+    if ret == 0:
+        break
+    image = cv2.flip(frame, 1)
+    image_np = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    image_np_expanded = np.expand_dims(image_np, axis=0)
     scores, boxes, classes, num_detections = tf_sess.run(
         [tf_scores, tf_boxes, tf_classes, tf_num_detections],
         feed_dict={
-            tf_input: image_resized[None,...]
+            tf_input: image_np_expanded
             })
     boxes = boxes[0] # index by 0 to remove batch dimension
     scores = scores[0]
