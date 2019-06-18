@@ -4,7 +4,7 @@ HOST = "broker"
 PORT = 1883
 TOPIC = "facedetect"
 
-REMOTE_HOST = '108.168.189.85'
+REMOTE_HOST = '169.61.86.153'
 REMOTE_PORT = 1883
 REMOTE_TOPIC = "cloudfaces"
 
