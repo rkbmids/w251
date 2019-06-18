@@ -18,7 +18,7 @@ CLASSES_NAME='detection_classes'
 SCORES_NAME='detection_scores'
 MASKS_NAME='detection_masks'
 NUM_DETECTIONS_NAME='num_detections'
-THRESHOLD=0.5
+DETECTION_THRESHOLD=0.5
 
 input_names = [INPUT_NAME]
 output_names = [BOXES_NAME, CLASSES_NAME, SCORES_NAME, NUM_DETECTIONS_NAME]
@@ -54,11 +54,11 @@ while(True):
         break
     image = cv2.flip(frame, 1)
     image_np = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    image_np_expanded = np.expand_dims(image_np, axis=0)
+    image_resized = np.expand_dims(image_np, axis=0)
     scores, boxes, classes, num_detections = tf_sess.run(
         [tf_scores, tf_boxes, tf_classes, tf_num_detections],
         feed_dict={
-            tf_input: image_np_expanded
+            tf_input: image_resized
             })
     boxes = boxes[0] # index by 0 to remove batch dimension
     scores = scores[0]
@@ -70,10 +70,10 @@ while(True):
             box = boxes[i] * np.array([image_resized.shape[0],
                 image_resized.shape[1], image_resized.shape[0],
                 image_resized.shape[1]])
-            faces += box
+            faces.append(box)
 
     for (x,y,w,h) in faces:
-        face = frame[y:y+h, x:x+w]
+        face = frame[int(y):int(y)+int(h), int(x):int(x)+int(w)]
         print("\nFound a face!\nShape: ", face.shape, '\nType: ', face.dtype)
         rc,jpg = cv2.imencode('.png', face)
         msg = jpg.tobytes()
