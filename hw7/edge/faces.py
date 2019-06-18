@@ -75,7 +75,12 @@ while(True):
     for (x,y,w,h) in faces:
         face = frame[int(y):int(y)+int(h), int(x):int(x)+int(w)]
         print("\nFound a face!\nShape: ", face.shape, '\nType: ', face.dtype)
-        rc,jpg = cv2.imencode('.png', face)
-        msg = jpg.tobytes()
-        client.publish(TOPIC, payload=msg, qos=0, retain=False)
-        print("Published Message!")
+        try:
+            rc,jpg = cv2.imencode('.jpg', face)
+            print('encoded as jpg! writing to bytes...')
+            msg = jpg.tobytes()
+            print('publishing...')
+            client.publish(TOPIC, payload=msg, qos=0, retain=False)
+            print("Published Message!")
+        except:
+            print(face)
