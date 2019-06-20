@@ -6,7 +6,7 @@ import paho.mqtt.client as mqtt
 print('imports done!')
 index = 0
 
-HOST="108.168.189.85"
+HOST="169.61.86.153"
 PORT=1883
 TOPIC="cloudfaces"
 
