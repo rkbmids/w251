@@ -11,6 +11,6 @@ RUN pip install paho-mqtt
 EXPOSE 1883
 
 WORKDIR /
-COPY faces.py .
+COPY readandsave.py .
 
-CMD python faces.py
+CMD python readandsave_straight.py

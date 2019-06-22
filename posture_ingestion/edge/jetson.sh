@@ -4,7 +4,9 @@ docker network create --driver bridge jetsonbridge
 
 docker build -t broker -f Dockerfile.broker .
 
-docker build -t forwarder -f Dockerfile.forwarder .
+docker build -t forwardslouch -f Dockerfile.forwardslouch .
+
+docker build -t forwardstraight -f Dockerfile.forwardstraight .
 
 docker build -t facedetect -f Dockerfile.facedetect .
 

@@ -2,11 +2,11 @@ import paho.mqtt.client as mqtt
 print('STARTING SCRIPT')
 HOST = "broker"
 PORT = 1883
-TOPIC = "facedetect"
+TOPIC = "straight"
 
-REMOTE_HOST = '108.168.189.85'
+REMOTE_HOST = '169.61.86.153'
 REMOTE_PORT = 1883
-REMOTE_TOPIC = "cloudfaces"
+REMOTE_TOPIC = "cloudstraight"
 
 def on_connect_local(client, userdata, flags, rc):
     print('connected locally with rc: ', str(rc))

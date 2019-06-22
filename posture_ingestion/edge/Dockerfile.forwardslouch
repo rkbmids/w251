@@ -1,6 +1,6 @@
 FROM alpine:3.7
 
-RUN apk update && apk add py-pip 
+RUN apk update && apk add py-pip
 
 RUN apk add mosquitto-clients
 
@@ -9,6 +9,6 @@ RUN pip install paho-mqtt
 EXPOSE 1883
 
 WORKDIR /
-COPY forward.py .
+COPY forward_slouch.py .
 
-CMD python forward.py
+CMD python forward_slouch.py
