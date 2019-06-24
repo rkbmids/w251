@@ -12,3 +12,5 @@ EXPOSE 1883
 
 WORKDIR /
 COPY faces.py .
+
+RUN /bin/bash
