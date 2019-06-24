@@ -8,9 +8,9 @@ index = 0
 
 HOST="169.61.86.153"
 PORT=1883
-TOPIC="cloudstraight"
+TOPIC="cloudslouching"
 
-path = '/data/straight' #map directory to  /mnt/hw3bucket
+path = '/data/slouch' #map directory to  /mnt/hw3bucket
 
 def on_connect(clnt, user, flags, rc):
     client.subscribe(TOPIC)

@@ -11,6 +11,6 @@ RUN pip install paho-mqtt
 EXPOSE 1883
 
 WORKDIR /
-COPY readandsave.py .
+COPY readandsave_straight.py .
 
 CMD python readandsave_straight.py
