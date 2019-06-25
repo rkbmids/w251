@@ -3,7 +3,7 @@ import cv2
 
 import paho.mqtt.client as mqtt
 import argparse
-
+#docker exec -it facedetect /bin/bash
 parser = argparse.ArgumentParser()
 parser.add_argument('label', choices=['straight', 'slouch'])
 args = parser.parse_args()
@@ -27,7 +27,7 @@ while(True):
         #twice as many images per frame w vertical flip
         image_np = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-        rc,jpg = cv2.imencode('.png', face)
+        rc,jpg = cv2.imencode('.png', image_np)
 
         msg = jpg.tobytes()
         client.publish(TOPIC, payload=msg, qos=0, retain=False)
