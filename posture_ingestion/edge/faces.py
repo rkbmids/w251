@@ -30,5 +30,5 @@ while(True):
         rc,jpg = cv2.imencode('.png', image_np)
 
         msg = jpg.tobytes()
-        client.publish(TOPIC, payload=msg, qos=0, retain=False)
+        client.publish(TOPIC, payload=msg, qos=1, retain=False)
         print("Published Message!")
