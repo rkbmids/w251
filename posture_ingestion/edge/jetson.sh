@@ -12,6 +12,8 @@ docker build -t facedetect -f Dockerfile.facedetect .
 
 docker run -d --name broker -p 1883:1883 --network jetsonbridge broker
 
-docker run -d --name forwarder --network jetsonbridge forwarder
+docker run -d --name forwardslouch --network jetsonbridge forwardslouch
+
+docker run -d --name forwardstraight --network jetsonbridge forwardstraight
 
 docker run -d -t --name facedetect --privileged --network jetsonbridge facedetect
