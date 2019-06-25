@@ -12,5 +12,3 @@ EXPOSE 1883
 
 WORKDIR /
 COPY faces.py .
-
-RUN /bin/sh sleep 6000
