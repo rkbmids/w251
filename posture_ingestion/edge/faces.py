@@ -5,14 +5,13 @@ import paho.mqtt.client as mqtt
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('label')
-parser.parse_args()
-label = parser.label
+parser.add_argument('label', choices=['straight', 'slouch'])
+args = parser.parse_args()
+label = args.label
 
 TOPIC = label
 HOST="broker"
 PORT=1883
-
 
 def on_connect(clnt, user, flags, rc):
     print("connected with rc:" + str(rc))
