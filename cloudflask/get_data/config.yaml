@@ -1,0 +1,14 @@
+posture_summary:
+  - image_id INTEGER NOT NULL
+  - user STRING NULL
+  - datetime TIMESTAMP NOT NULL
+  - classification STRING NOT NULL
+
+posture_detail:
+  - image_id INTEGER NOT NULL
+  - feature_1 INTEGER NOT NULL
+  - feature_2 INTEGER NOT NULL
+
+image_feedback:
+  - image_id INTEGER NOT NULL
+  - approval_indicator BOOLEAN NOT NULL

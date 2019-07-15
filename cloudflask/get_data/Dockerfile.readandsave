@@ -10,7 +10,9 @@ RUN pip install paho-mqtt
 
 EXPOSE 1883
 
-WORKDIR /
-COPY readandsave.py .
+#assuming repo cloned at root
+WORKDIR /w251-posture/get_data/
+COPY * .
 
+CMD python create_db.py
 CMD python readandsave.py
